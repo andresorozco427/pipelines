@@ -40,11 +40,12 @@ pipeline {
 			   steps{
 	               echo '------------>Analisis de codigo estatico<------------'
 	               withSonarQubeEnv('SonarQube') {
-	                   bat "\"${scannerHome}/bin/sonar-scanner.bat\""
-	               }	               
-	               timeout(time: 10, unit: 'MINUTES'){
-	               		waitForQualityGate abortPipeline: true
-	               }
+	                  // bat "\"${scannerHome}/bin/sonar-scanner.bat\""
+	          		  bat "./gradlew sonarqube \
+  							-Dsonar.projectKey=TestScan \
+ 							-Dsonar.host.url=http://localhost:9000 \
+  							-Dsonar.login=6e9c5c2444313f11ed6bfd597cc90bc1d5484bfc"
+	               }	
 	           }			
 			}	
 				
