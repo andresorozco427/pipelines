@@ -34,12 +34,12 @@ pipeline {
 			}		
 			
 			stage('Analisis de codigo statico'){
-				steps{
-					echo   "..............Analisis de codigo estatico................"
-					withSonarQubeEnv(){
-						sh "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"}
-					}
-				}				
+			   steps{
+	               echo '------------>Analisis de codigo estatico<------------'
+	               withSonarQubeEnv('Sonar') {
+	                   bat "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+	               }
+	           }			
 			}	
 				
 		}
@@ -59,5 +59,5 @@ pipeline {
 	 		}
 	}
 
-			
+}	
 
