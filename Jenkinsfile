@@ -4,11 +4,7 @@ pipeline {
 	options {
 	    buildDiscarder(logRotator(numToKeepStr: '2'))
 	    disableConcurrentBuilds()
-	}	
-	tools {
-		jdk 'JDK8'
-	}	
-		
+	}			
 	stages {
 			stage('Checkout'){
 				steps{				
