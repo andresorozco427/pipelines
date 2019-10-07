@@ -36,9 +36,8 @@ pipeline {
 			stage('Analisis de codigo statico'){
 				steps{
 					echo   "..............Analisis de codigo estatico................"
-					def scannerHomme = tool name: 'Scanner 4.2.0', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
 					withSonarQubeEnv(){
-						bat "${scannerHomme}/bin/sonar-scanner"
+						sh "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"}
 					}
 				}				
 			}	
@@ -58,7 +57,7 @@ pipeline {
 	 		mail (to: 'andres.orozco@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
 	 		body: "Something is wrongwith ${env.BUILD_URL}")
 	 		}
-		}
+	}
 
 			
-}
+
