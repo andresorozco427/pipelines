@@ -34,10 +34,17 @@ pipeline {
 			}		
 			
 			stage('Analisis de codigo statico'){
+				environment {
+				    scannerHome = tool 'Scanner 4.2.0'
+				}
 			   steps{
 	               echo '------------>Analisis de codigo estatico<------------'
-	               withSonarQubeEnv('Sonar') {
-	                   bat "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+	               withSonarQubeEnv('SonarQube') {
+	                   bat "${scannerHome}/bin/sonar-scanner"
+	               }
+	               
+	               timeout(time: 10, unit: 'MINUTES'){
+	               		waitForQualityGate abortPipeline: true
 	               }
 	           }			
 			}	
