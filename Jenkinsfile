@@ -40,7 +40,7 @@ pipeline {
 			   steps{
 	               echo '------------>Analisis de codigo estatico<------------'
 	               withSonarQubeEnv('SonarQube') {
-	                   bat "${scannerHome}/bin/sonar-scanner.bat"
+	                   bat "\"${scannerHome}/bin/sonar-scanner.bat\""
 	               }	               
 	               timeout(time: 10, unit: 'MINUTES'){
 	               		waitForQualityGate abortPipeline: true

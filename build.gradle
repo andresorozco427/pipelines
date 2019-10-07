@@ -7,10 +7,6 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'jacoco'
 
-plugins {
-  id "org.sonarqube" version "2.7"
-}
-
 group = 'com.integracion'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
