@@ -31,7 +31,17 @@ pipeline {
 			    echo "...................Build................."
 			  	  bat 'gradle --b ./build.gradle build -x test'
 			    }
-			}			
+			}		
+			
+			stage('Analisis de codigo statico'){
+				steps{
+					echo   "..............Analisis de codigo estatico................"
+					def scannerHomme = tool name: 'Scanner 4.2.0', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+					withSonarQubeEnv(){
+						bat "${scannerHomme}/bin/sonar-scanner"
+					}
+				}				
+			}	
 				
 		}
 		
