@@ -22,14 +22,14 @@ pipeline {
 			stage('Unit test'){
 			    steps{
 			        echo "..............Unit Test............."
-			        bat 'gradle --b ./continuosIntegration/build.gradle test'
+			        bat 'gradle --b ./build.gradle test'
 			    }	  
 			}
 			
 			stage('Build'){
 			    steps {
 			    echo "...................Build................."
-			  	  bat 'gradle --b ./continuosIntegration/build.gradle build -x test'
+			  	  bat 'gradle --b ./build.gradle build -x test'
 			    }
 			}			
 				
