@@ -50,10 +50,12 @@ pipeline {
 		post {
 			 always {
 	             echo 'This will always run'
+	             archiveArtifacts artifacts: 'generateFile.txt', onlyIfSuccessful: true 
 	         }
 	         success {
 	             echo 'This will run only if successful'
-	             junit '**/build/test-results/test/*.xml'
+	             junit 'build/test-results/test/*.xml'
+	             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
 	         }
 		         failure {
 	 		echo 'This will run only if failed' 
